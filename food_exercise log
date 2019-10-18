@@ -1,0 +1,73 @@
+"""
+This program inputs the food and exercise data from user
+for every person by creating corresponding files of that persons name
+eg..karan_food.txt and karan_exercise.txt
+"""
+
+def getdate():
+    """This function retrieves the current date and time from system"""
+    import datetime
+    return datetime.datetime.now()
+# print(getdate())
+
+def lock():
+    name1 = input("Enter the name for whom you wish to store info .")
+    #creating new file with user given name
+    newfile_f = name1 + "_food.txt"
+    newfile_e = name1 + "_exercise.txt"
+    fore = input("Do you wish to store Food or Exercise (f/e) ?")
+
+    if fore == "f":
+        with open(newfile_f,"a") as f:
+            f1 = input("What did you eat ?")
+            f.write(str(getdate())+" ---- ")
+            f.write(f1+"\n")
+    else:
+        with open(newfile_e, "a") as f:
+            e1 = input("What exercise did you do ?")
+            f.write(str(getdate())+" ---- ")
+            f.write(e1+"\n")
+
+
+def retrieve():
+    name2 = input("Enter the name for whom you wish to retrieve info .")
+    #opening user entered name file in read mode
+
+    chkfile_f = name2 + "_food.txt"
+    chkfile_e = name2 + "_exercise.txt"
+    fore_r = input("Do you wish to retrieve Food or Exercise (f/e)? ")
+
+    if fore_r == "f":
+        with open(chkfile_f,"r") as g:
+            print(g.read())
+    else:
+        with open(chkfile_e, "r") as g:
+            print(g.read())
+
+
+rstrt="y"
+while rstrt == "y":
+    q = int(input("Do you wish to 1. Store or 2. Retrieve info or 3. Exit ?"))
+    if q == 1:
+        lock()
+        rstrt=input("Do you want to continue (y/n)")
+        continue
+    elif q == 2:
+        retrieve()
+        rstrt = input("Do you want to continue (y/n)")
+        continue
+    else:
+        print("See you again.")
+        exit()
+
+
+
+
+
+
+
+
+
+
+
+
