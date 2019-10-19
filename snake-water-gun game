@@ -1,0 +1,62 @@
+""" This game is similar to Rock Paper Scissors
+Snake drinks Water
+Water covers Gun
+Gun kills snake
+"""
+
+import random
+var = ["Snake","Water","Gun"]
+user_val = ["s","w","g"]
+user_val2 = ["S","W","G"]
+print("LET'S PLAY S = SNAKE W = WATER G = GUN\nSnake drinks Water\nWater covers Gun\nGun kills snake\nBEST OF 10")
+
+user_count=0
+comp_count=0
+count = 1
+while count <= 10:
+
+    swg = input("Enter your choice ")
+    if swg in user_val or user_val2:
+
+        if swg == "s" or swg == "S":
+            c = var[0]
+        elif swg == "w" or swg == "W":
+            c = var[1]
+        elif swg == "g" or swg == "G":
+            c = var[2]
+
+        swg_c = random.choice(var)
+
+        print("You chose",c,"Computer chose",swg_c)
+
+        if swg == "s" and swg_c == "Water":
+            print("You won")
+            user_count +=1
+        elif swg == "s" and swg_c == "Gun":
+            print("Computer won")
+            comp_count+=1
+        elif swg == "w" and swg_c == "Snake":
+            print("Computer won")
+            comp_count+=1
+        elif swg == "w" and swg_c == "Gun":
+            print("You won")
+            user_count +=1
+        elif swg == "g" and swg_c == "Water":
+            print("Computer won")
+            comp_count+=1
+        elif swg == "g" and swg_c == "Snake":
+            print("You won")
+            user_count+=1
+        else:
+            print("This is a Draw")
+    else:
+        print("Enter only S = SNAKE W = WATER G = GUN")
+
+    count = count +1
+
+
+if user_count > comp_count:
+    print("You won this whole round")
+else:
+    print("Computer won this whole round")
+
