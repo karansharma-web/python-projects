@@ -1,0 +1,27 @@
+import json
+import requests
+from gtts import gTTS
+import os
+
+# url to fetch news from newsapi.org
+url = ('https://newsapi.org/v2/top-headlines?country=in&apiKey=dc82b90d06004233b08accb4c0e7da71')
+
+response = requests.get(url)
+
+# parsing into json
+r = response.json()
+
+# print(type(r))
+# print(r)
+
+articles = r['articles']    # Finding 'articles' list in json list
+mytext = ""
+for i in range(10):
+    my_text = articles[i]['title']
+    mytext = mytext + my_text   # concatenating all articles
+print(mytext)
+
+language = 'en'
+myobj = gTTS(text=mytext, lang=language, slow=False)
+myobj.save("news.mp3")
+os.system("news.mp3")
