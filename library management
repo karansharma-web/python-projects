@@ -1,0 +1,111 @@
+# Create a library class
+# display book
+# lend book - (who owns the book if not present)
+# add book
+# return book
+# display student holdings in dictionary
+
+# Library = Library(listofbooks, library_name)
+
+
+#dictionary (books-nameofperson)
+
+# create a main function and run an infinite while loop asking
+# users for their input
+
+
+class Library:
+
+    def __init__(self, libname, list_books):
+        self.libname = libname
+        self.list_books = list_books
+        self.stu_dict = {}
+
+    def display_books(self):
+        print(f"We have following books in our library: {self.libname}")
+        for book in self.list_books:
+            print(book)
+
+    def add(self, add_book):
+        self.list_books.append(add_book)
+        print("Book successfully added to library")
+
+    def lend(self, book, name):
+        if book not in self.stu_dict.keys():
+           if book in self.list_books:
+                self.list_books.remove(book)
+                self.stu_dict.update({book: name})
+
+                #for writing to a text file
+                # with open('book_name.txt', 'w') as f:
+                #     f.write(str(self.stu_dict))
+
+                print("Student holding database has been updated.You can take the book now.")
+
+           else:
+                print(f"Book named {book} not in library\n")
+        else:
+            print(f"Book is already being used by {self.stu_dict[book]}")
+
+    def ret_book(self, returned_book):
+        self.list_books.append(returned_book)
+        self.stu_dict.pop(returned_book)
+
+    def stud_dict(self):
+
+        print(f"-- Student holdings --")
+        for key,value in self.stu_dict.items():
+            print(f"{str(value)} : {str(key)}")
+        print(f"------------------------")
+
+
+if __name__ == '__main__':
+
+    lib = Library("Engineering", ["Fluid mechanics", "Optics", "Gravitation", "Magnetism"])
+
+    print("WELCOME TO LIBRARY MANAGEMENT SYSTEM\n")
+
+    re = "y"
+    while re == "y":
+
+        print("\nEnter your choice \n1.Display books\n2.Add books\n"
+              "3.Lend book\n4.Return book\n5.Student holdings")
+        input1 = input()
+
+        if input1 not in ['1', '2', '3', '4','5']:
+            print("Please enter a valid option")
+            continue
+
+        else:
+            input1 = int(input1)
+
+        if input1 == 1:
+            lib.display_books()
+
+        elif input1 == 2:
+            add_book = input("Enter name of book to add to library")
+            lib.add(add_book)
+
+        elif input1 == 3:
+            name = input("Enter your name")
+            book = input("Enter name of book you would like to borrow")
+            lib.lend(book, name)
+
+
+        elif input1 == 4:
+            returned_book = input("Enter name of book you would like to return")
+            lib.ret_book(returned_book)
+
+        elif input1 == 5:
+            lib.stud_dict()
+
+
+        print("\nDo you want to continue again (y/n)")
+        re = input()
+        while (re != "y" and re != "n"):
+            re = input("Enter either y or n ")
+            if re == "n":
+                exit()
+
+            elif re == "y":
+                continue
