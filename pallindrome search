@@ -1,0 +1,51 @@
+"""
+The Next Palindrome
+
+Problem Statement
+A palindrome is a string which when reversed is equal to itself:
+Examples of palindrome includes 616, mom, 676, 100001
+You have to take a number as an input from the user. You have to find the next palindrome to that number.
+Your first input should be ‘number of test cases’ and then take all the cases as input from the user
+Input:
+3
+451
+10
+2133
+Output:
+Next palindrome for 451 is 454
+Next palindrome for 10 is 11
+Next palindrome for 2133 is 2222
+"""
+
+
+def next(n):
+    n = n + 1
+    while not ispall(n):
+        n = n + 1       # checking next number if pallindrome or not
+    return n
+
+
+def ispall(n):
+    return str(n) == str(n)[::-1]
+
+
+if __name__ == '__main__':
+
+    l = []
+    again = "y"
+    while again == "y":
+        print("Enter the number of numbers you want to enter")
+
+        i = int(input())
+
+        for j in range(i):
+            k = int(input("Enter the number"))
+            l.append(k)
+
+        for m in range(i):  # first iteration in main list
+            if ispall(l[m]):
+                print(f"{l[m]} is itself a pallindrome")
+
+            print(f"Pallindrome after {l[m]} is {next(l[m])}")
+
+        again = input(f"\nWant to start again ? y/n\n")
