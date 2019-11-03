@@ -1,0 +1,69 @@
+"""
+Guessing the number game.
+Two values are input rom each player and then they try to guess a number
+that computer generated randomly b/w those two numbers
+At the end , the winner is displayed with number of tries taken
+""" 
+
+
+import random
+
+def play(player):
+    print(f"Player {player} turn")
+    while True:
+        try:
+            a = int(input("Enter lower number in range to choose from"))
+            b = int(input("Enter upper number in range to choose from"))
+
+        except ValueError:
+            print("Only numeric value allowed")
+        if a < b :
+            break
+        if a > b :
+            print(f"Lower value is greater than higher one. Enter again\n")
+            continue
+
+    c = random.choice(range(a, b))
+
+    count = 1
+    a = int(input("Guess the number"))
+
+    while count <= 5:
+
+        if a == c :
+                print(f"Wow , you guessed {c} it right in {count} tries !"
+                      f"Computer also chose {c} ")
+                break
+
+        elif a < c:
+                    print("Entered number is less than the winning number.")
+
+        else:
+                    print("Entered number is greater than the winning number.")
+
+        if count < 5:
+            a = int(input("Guess the number again "))
+        count = count + 1
+
+    if count > 5:
+        print("Sorry , You reached maximum of 5 tries")
+
+    return count
+
+
+again = "y"
+while again == "y":
+
+    print("Guess the number challenge \n ")
+
+    # print("Player 1 turn")
+    one = play(1)
+    # print("Player 2 turn")
+    two = play(2)
+    if one < two:
+        print(f"Player one wins with {one} tries")
+    elif one > two:
+        print(f"Player two wins with {two} tries")
+    else:
+        print(f"Draw !")
+    again = input(f"Want to play again y/n")
