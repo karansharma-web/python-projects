@@ -16,7 +16,7 @@ count = 1
 while count <= 10:
 
     swg = input("Enter your choice ")
-    if swg in user_val or user_val2:
+    if swg in user_val or swg in user_val2:
 
         if swg == "s" or swg == "S":
             c = var[0]
@@ -49,10 +49,13 @@ while count <= 10:
             user_count+=1
         else:
             print("This is a Draw")
+            
+        count = count +1
+    
     else:
         print("Enter only S = SNAKE W = WATER G = GUN")
 
-    count = count +1
+    
 
 
 if user_count > comp_count:
