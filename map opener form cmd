@@ -1,0 +1,13 @@
+# Enter in command line ----- python mapit.py **address on map** -----  and google maps will open ,
+#else it will pick the copied adddress from clipboard
+
+import webbrowser, sys, pyperclip
+if (len(sys.argv)) > 1:
+
+    address = ' '.join(sys.argv[1:])
+    
+else:
+    address = pyperclip.paste()
+
+webbrowser.open('https://www.google.com/maps/place/' + address)
+
